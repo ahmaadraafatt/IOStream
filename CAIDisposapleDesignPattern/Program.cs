@@ -5,12 +5,14 @@
         static void Main(string[] args)
         {
             //1)not recommended
+            
             //CurrencyService currencyServicedService = new CurrencyService();
             //var result = currencyServicedService.GerCurrencies();
             //currencyServicedService.Dispose();
             //Console.WriteLine(result);
 
             // 2) Recommended
+            
             //CurrencyService currencyServicedService = null;
             //try
             //{
@@ -28,21 +30,22 @@
             //}
 
             //// 3) more recommmended using .net framework 2+
-            //using (CurrencyService currencyServicedService = new CurrencyService()) 
-            //{
-
-            //    var result = currencyServicedService.GerCurrencies();
-            //    Console.WriteLine(result);
-            //}
-
-
+            
+             // using CurrencyService currencyServicedService = new CurrencyService();
+             // var result = currencyServicedService.GerCurrencies();
+             // Console.WriteLine(result);
+           
             // 4) using without blocks C# 8.0
-            using CurrencyService currencyServicedService = new CurrencyService();
-            var result = currencyServicedService.GerCurrencies();
-            Console.WriteLine(result);
+            
+           using (CurrencyService currencyServicedService = new CurrencyService()) 
+            {
+               var result = currencyServicedService.GerCurrencies();
+               Console.WriteLine(result);
+            }
 
             Console.ReadKey();
         }
+        
         class CurrencyService : IDisposable
         {
             private readonly HttpClient _httpClient;
